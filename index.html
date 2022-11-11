@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Peta 12 Kecamatan</title>
+
+    <!-- load css leaflet -->
+    <link rel="stylesheet" href="src/leaflet.css">
+    <!-- load js leaflet -->
+    <script src="src/leaflet.js"></script>
+    <script src="geojson/kecpraya.js" type="text/javascript"></script>
+    <style>
+        body,html{
+            padding: 0px;
+            margin: 0px;
+            height: 100%;
+        }
+        #ntbmap{
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="ntbmap"></div>
+
+
+    <script>
+    var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' + 
+                 ' &copy; <a href="https://www.jihadul4kbar.github.io/">Jihadul Akbar</a>',
+        mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiamloYWR1bDRrYmFyIiwiYSI6ImNqZ3lzOXpmaDA0bGQzMnJveGh5eW5lZjgifQ.IrFoCdc8VtGPQEzUFPqG_A';
+
+    var streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr}),
+        grayscale   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr});
+        traffic = L.tileLayer(mbUrl, {id:'mapbox.mapbox-terrain-v2', attribution:mbAttr});
+        jalanv8 = L.tileLayer(mbUrl, {id:'mapbox.mapbox-streets-v8', attribution:mbAttr});
+        satellite = L.tileLayer(mbUrl, {id:'mapbox.satellite', attribution:mbAttr});
+
+// mapbox.streets
+// mapbox.light
+// mapbox.dark
+// mapbox.satellite
+// mapbox.streets-satellite
+// mapbox.wheatpaste
+// mapbox.streets-basic
+// mapbox.comic
+// mapbox.outdoors
+// mapbox.run-bike-hike
+// mapbox.pencil
+// mapbox.pirates 
+// mapbox.emerald
+// mapbox.high-contrast
+
+    var map = L.map('ntbmap', {
+        center: [-8.6873968, 116.2817962],
+        zoom: 12,
+        layers: [ streets]
+    });
+var mapIcon = L.Icon.extend({
+        options: {
+            iconSize:     [33, 38],
+            iconAnchor:   [22, 94],
+            popupAnchor:  [-5, -90] 
+        }
+        });
+     var bendunganIcon = new mapIcon({iconUrl: 'icon/dam.png'}),
+         hospitalIcon = new mapIcon({iconUrl: 'icon/hospital-building.png'}),
+         kantorIcon = new mapIcon({iconUrl: 'icon/office-building.png'});
+		 tamanIcon = new mapIcon({iconUrl: 'icon/garden.png'});
+
+    L.marker([-8.6128812, 116.3103311],{icon:kantorIcon}).addTo(map)
+    .bindPopup('<img src="img/ktrbtkl.jpg" width="150px"><br>Kantor Camat Batukliang.<br> Lombok Tengah.');
+
+    L.marker([-8.588949, 116.3245473],{icon:kantorIcon}).addTo(map)
+    .bindPopup('<img src="img/ktrbtklUtara.jpg" width="150px"><br>Kantor Camat Batukliang.<br> Lombok Tengah.');
+
+    L.marker([-8.707318, 116.372808],{icon:kantorIcon}).addTo(map)
+    .bindPopup('<img src="img/jeneper.jpg" width="150px"><br>Kantor Camat Janapria.<br> Lombok Tengah.');
+
+    L.marker([-8.635001, 116.359045],{icon:kantorIcon}).addTo(map)
+    .bindPopup('<img src="img/kopang.jpg" width="150px"><br>Kantor Camat kopang.<br> Lombok Tengah.');
+
+    L.marker([-8.662523, 116.223506],{icon:kantorIcon}).addTo(map)
+    .bindPopup('<img src="img/jonggat.jpg" width="150px"><br>Kantor Camat Jonggat.<br> Lombok Tengah.');
+
+    L.marker([-8.612434, 116.265955],{icon:kantorIcon}).addTo(map)
+    .bindPopup('<img src="img/pring.jpg" width="150px"><br>Kantor Camat Pringgerata.<br> Lombok Tengah.');
+
+    L.marker([-8.7217185,116.2798422],{icon:kantorIcon}).addTo(map)
+    .bindPopup('<img src="img/praya.jpg" width="150px"><br>Kantor Camat Praya.<br> Lombok Tengah.');
+
+    L.marker([-8.723341, 116.315219],{icon:kantorIcon}).addTo(map)
+    .bindPopup('<img src="img/prateng.jpg" width="150px"><br>Kantor Camat Praya Tengah.<br> Lombok Tengah.');
+
+    L.marker([-8.786074, 116.388888],{icon:kantorIcon}).addTo(map)
+    .bindPopup('<img src="img/pratim.jpg" width="150px"><br>Kantor Camat Praya Timur.<br> Lombok Tengah.');
+
+    L.marker([-8.750303, 116.252096],{icon:kantorIcon}).addTo(map)
+    .bindPopup('<img src="img/praba.jpg" width="150px"><br>Kantor Camat Praya Barat.<br> Lombok Tengah.');
+
+    L.marker([-8.765233, 116.202657],{icon:kantorIcon}).addTo(map)
+    .bindPopup('<img src="img/pradap.jpg" width="150px"><br>Kantor Camat Praya Barat Daya.<br> Lombok Tengah.');
+
+    L.marker([-8.845303, 116.287801],{icon:kantorIcon}).addTo(map)
+    .bindPopup('<img src="img/pujut.jpg" width="150px"><br>Kantor Camat Pujut.<br> Lombok Tengah.');
+
+   
+
+
+    var rsud = L.marker([-8.7019832, 116.2958626],{icon: hospitalIcon}).addTo(map)
+    .bindPopup('<img src="img/rsud.jpg" width="150px"><br> RSUD Praya .<br> Lombok Tengah.');
+
+    var puskesmas = L.marker([-8.7060444, 116.2726082],{icon: hospitalIcon})
+    .addTo(map).bindPopup('<img src="img/pukes.jpg" width="200px"><br> PUSKESMAS.<br> Lombok Tengah.');
+
+	
+    
+    var rumahsakit = L.layerGroup([rsud, puskesmas]); 
+    var baseLayers = {
+        "Jalan": streets,
+        "Hitam Putih": grayscale,
+        "Trapik": traffic,
+        "Jalanv8": jalanv8,
+        "Satellite": satellite,
+        
+    };
+    var overlays = {
+        "RumahSakit": rumahsakit
+    };
+
+	var pengge = L.marker([-8.7575494, 116.1880415],{icon: bendunganIcon}).addTo(map)
+    .bindPopup('<img src="img/pengge.jpg" width="150px"><br> Bendungan Pengge .<br> Lombok Tengah.');
+
+    var batujai = L.marker([-8.7320897,116.2726254],{icon: bendunganIcon})
+    .addTo(map).bindPopup('<img src="img/Batujai.jpg" width="200px"><br> Bendungan Batujai.<br> Lombok Tengah.');
+
+	var bendungan = L.layerGroup([pengge, batujai]); 
+    var baseLayers = {
+        "Jalan": streets,
+        "Hitam Putih": grayscale,
+        "Trapik": traffic,
+        "Jalanv8": jalanv8,
+        "Satellite": satellite,
+        
+    };
+    var overlays = {
+        "Bendungan": bendungan
+    };
+
+	var alun_alun = L.marker([-8.7045539, 116.2712998],{icon: tamanIcon}).addTo(map)
+    .bindPopup('<img src="img/alun.jpg" width="150px"><br> Alun - Alun Tastura .<br> Lombok Tengah.');
+
+	var Biao = L.marker([-8.7139106, 116.2869397],{icon: tamanIcon}).addTo(map)
+    .bindPopup('<img src="img/biao.jpg" width="150px"><br> Taman Biao .<br> Lombok Tengah.');
+
+	var Tonjeng = L.marker([-8.7141343, 116.26392882],{icon: tamanIcon}).addTo(map)
+    .bindPopup('<img src="img/tojang.jpg" width="150px"><br> Tonjeng Beru .<br> Lombok Tengah.');
+
+	var taman = L.layerGroup([alun_alun, Biao, Tonjeng]); 
+    var baseLayers = {
+        "Jalan": streets,
+        "Hitam Putih": grayscale,
+        "Trapik": traffic,
+        "Jalanv8": jalanv8,
+        "Satellite": satellite,
+        
+    };
+    var overlays = {
+        "Taman": taman
+    };
+
+    L.control.layers(baseLayers).addTo(map);
+
+    
+
+    L.geoJSON([btkl, btklu, kpg, jnp, jgt, pggt, prabarda, praya, prabar, prateng, pratim,pjt], {
+		style: function (feature) {
+			return feature.properties && feature.properties.style;
+		}
+	}).addTo(map);
+
+    
+    </script>
+</body>
+</html>
